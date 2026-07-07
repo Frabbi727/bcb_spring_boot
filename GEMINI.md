@@ -6,6 +6,9 @@ Workspace-scoped agent guidelines and constraints are configured in the [.agents
 - [General Rules](file:///Users/fazlerabbi/Desktop/Projects/bcb_player_onboarding_backend/.agents/rules/general_rules.md): General project guidelines and commands.
 - [Java & Spring Boot Rules](file:///Users/fazlerabbi/Desktop/Projects/bcb_player_onboarding_backend/.agents/rules/java_rules.md): Coding style, Lombok, and GraalVM native image compatibility constraints.
 
+Custom agent skills are configured in the [.agents/skills/](file:///Users/fazlerabbi/Desktop/Projects/bcb_player_onboarding_backend/.agents/skills/) directory:
+- [Spring MCP & Native Development Guide](file:///Users/fazlerabbi/Desktop/Projects/bcb_player_onboarding_backend/.agents/skills/spring-mcp-native-dev/SKILL.md): Assists with building, testing, and debugging.
+
 Please ensure you adhere to these guidelines for all code generation and modifications in this project.
 
 ## Local MCP Server Configuration
