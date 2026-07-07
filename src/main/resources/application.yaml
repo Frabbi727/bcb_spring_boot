@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: bcb_player_onboarding_backend
+  main:
+    banner-mode: "off"
+    web-application-type: none
+  ai:
+    mcp:
+      server:
+        stdio: true
+logging:
+  pattern:
+    console: ""
+  level:
+    root: error
