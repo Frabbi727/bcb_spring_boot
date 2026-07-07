@@ -9,11 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Player {
+public class SponsorBanner {
     private String id;
-    private String name;
-    private int age;
-    private PlayerPosition position;
-    private PlayerStatus status;
-    private boolean medicalFitnessPassed;
+    private String title;
+    private String imageUrl;
+    private String targetUrl;
 }

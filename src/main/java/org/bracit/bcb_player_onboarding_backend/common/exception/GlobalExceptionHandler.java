@@ -1,14 +1,12 @@
 package org.bracit.bcb_player_onboarding_backend.common.exception;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.bracit.bcb_player_onboarding_backend.common.dto.ApiResponse;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.bracit.bcb_player_onboarding_backend.common.dto.ApiResponse.ErrorDetail;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -34,22 +32,17 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiResponse<Map<String, String>>> handleValidation(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ApiResponse<Void>> handleValidation(MethodArgumentNotValidException ex) {
         log.warn("Request validation failed");
         
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach(error -> 
-            errors.put(error.getField(), error.getDefaultMessage())
-        );
+        List<ErrorDetail> errorDetails = ex.getBindingResult().getFieldErrors().stream()
+                .map(error -> new ErrorDetail(error.getField(), error.getDefaultMessage()))
+                .collect(Collectors.toList());
 
-        String combinedMessage = ex.getBindingResult().getFieldErrors().stream()
-                .map(error -> error.getField() + ": " + error.getDefaultMessage())
-                .collect(Collectors.joining(", "));
-
-        ApiResponse<Map<String, String>> response = ApiResponse.<Map<String, String>>builder()
+        ApiResponse<Void> response = ApiResponse.<Void>builder()
                 .success(false)
-                .message("Validation failed: " + combinedMessage)
-                .data(errors)
+                .message("Validation failed")
+                .errors(errorDetails)
                 .build();
                 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);

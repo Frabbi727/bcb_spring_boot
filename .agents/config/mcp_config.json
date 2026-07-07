@@ -4,7 +4,8 @@
       "command": "java",
       "args": [
         "-jar",
-        "/Users/fazlerabbi/Desktop/Projects/bcb_player_onboarding_backend/build/libs/bcb_player_onboarding_backend-0.0.1-SNAPSHOT.jar"
+        "/Users/fazlerabbi/Desktop/Projects/bcb_player_onboarding_backend/build/libs/bcb_player_onboarding_backend-0.0.1-SNAPSHOT.jar",
+        "--spring.profiles.active=mcp"
       ]
     }
   }
